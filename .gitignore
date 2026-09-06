@@ -1,0 +1,5 @@
+node_modules/
+dist/
+成品/
+.DS_Store
+*.tar.gz
