@@ -34,3 +34,8 @@ test('completed research rewards are granted exactly once',()=>{
  assert.ok(C);let s=C.freshSave();for(const c of D.creatures.filter(c=>c.kind==='plant'))s=C.collect(s,c.id);
  const points=s.research;s=C.reward(s);assert.equal(s.research,points);assert.ok(s.badges.includes('plant'));
 });
+test('researcher turns toward movement, retaining direction when stationary',()=>{
+ assert.equal(typeof C.facingBetween,'function');
+ const p={x:40,y:50};assert.equal(C.facingBetween(p,{x:20,y:45}),'left');assert.equal(C.facingBetween(p,{x:70,y:50}),'right');
+ assert.equal(C.facingBetween(p,{x:42,y:20}),'up');assert.equal(C.facingBetween(p,{x:40,y:80}),'down');assert.equal(C.facingBetween(p,p,'left'),'left');
+});

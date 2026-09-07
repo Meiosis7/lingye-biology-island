@@ -56,3 +56,13 @@ test('WebMCP tools register on the document context and share visible state',asy
  assert.ok(read.annotations.readOnlyHint);const bad=await move.execute({region:'invalid'});assert.ok(bad.error);assert.equal(g.saved().region,'lab');
  const pending=move.execute({region:'moss'});g.flush();const result=await pending;assert.equal(result.region,'雾蕨幽林');assert.equal((await read.execute({})).region,'雾蕨幽林');
 });
+test('researcher portrait opens without changing progress and movement has direction and rest states',()=>{
+ const g=game();const before=JSON.stringify(g.saved());g.click('#researcher-btn');assert.ok(g.get('modal-content').textContent.includes('岑叶'));assert.ok(g.get('modal-content').textContent.includes('野外研究员'));g.click('#close-modal');assert.equal(JSON.stringify(g.saved()),before);
+ g.click('[data-region="tide"]');assert.equal(g.get('hero').dataset.facing,'left');assert.ok(g.get('hero').classList.contains('walking'));g.flush();assert.ok(!g.get('hero').classList.contains('walking'));
+ g.click('[data-region="moss"]');assert.equal(g.get('hero').dataset.facing,'up');g.flush();g.click('[data-region="pine"]');assert.equal(g.get('hero').dataset.facing,'right');g.flush();
+ g.click('[data-region="wetland"]');assert.equal(g.get('hero').dataset.facing,'down');g.flush();assert.equal(g.saved().caught.length,0);
+});
+test('updated game entrypoint versions styles and scripts to invalidate older browser caches',()=>{
+ const {document}=parseHTML(fs.readFileSync('index.html','utf8'));const version=require('../package.json').version;
+ for(const el of document.querySelectorAll('script[src],link[rel="stylesheet"]'))assert.ok((el.getAttribute('src')||el.getAttribute('href')).includes('v='+version));
+});

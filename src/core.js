@@ -22,5 +22,9 @@ globalThis.Core=(()=>{
  const newEncounter=id=>({id,step:0,wrong:0,status:'active'});
  const answer=(e,correct)=>{if(e.status!=='active')return {...e};const n={...e};if(correct)n.step++;else n.wrong++;n.status=n.step>=3?'caught':n.wrong>=3?'fled':'active';return n};
  const level=xp=>Math.min(20,1+Math.floor(number(xp)/40));
- return {freshSave,pool,sanitize,reward,collect,newEncounter,answer,level};
+ const facingBetween=(from,to,previous='down')=>{
+  const dx=to.x-from.x,dy=to.y-from.y;if(dx===0&&dy===0)return previous;
+  return Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up');
+ };
+ return {freshSave,pool,sanitize,reward,collect,newEncounter,answer,level,facingBetween};
 })();
