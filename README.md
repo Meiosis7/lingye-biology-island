@@ -4,9 +4,11 @@
 
 ## 直接游玩
 
+[打开公开网页版](https://meiosis7.github.io/lingye-biology-island/)，无需登录，电脑和手机均可游玩。
+
 前往 [Releases 下载成品](https://github.com/Meiosis7/lingye-biology-island/releases/latest)，下载 `lingye-offline-v2.1.0.html`，用 Chrome、Edge 或 Safari 打开。不需要安装、不依赖联网服务。
 
-完整 ZIP 包另含可编辑源码、美术素材和使用说明。仓库为私有时，需要登录有访问权限的 GitHub 账号才能下载；离线 HTML 可独立使用。
+完整 ZIP 包另含可编辑源码、美术素材和使用说明，均可公开下载；离线 HTML 可独立使用。
 
 ## v2.1：研究员岑叶
 
